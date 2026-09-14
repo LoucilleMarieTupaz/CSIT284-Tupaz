@@ -1,9 +1,9 @@
 
 import 'package:quiz_app/quiz_questions.dart';
 
-const questions = {
+const questions = [
   QuizQuestion(
-    'What are the main building blocks of Flutter UIs',
+    'What are the main building blocks of Flutter UIs?',
     [
       'Widgets',
       'Components',
@@ -56,4 +56,4 @@ const questions = {
       'By calling updateState()',
     ],
   ),
-};
+];
