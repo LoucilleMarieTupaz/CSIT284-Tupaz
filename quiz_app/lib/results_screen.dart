@@ -50,7 +50,21 @@ class ResultsScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height:30),
-            QuestionsSummary(getSummaryData(),),
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 81, 46, 142),
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    blurRadius: 6,
+                    offset: const Offset(2, 2),
+                  ),
+                ],
+              ),
+              child: QuestionsSummary(getSummaryData()),
+            ),
             const SizedBox(height:30),
             OutlinedButton.icon(
               style: OutlinedButton.styleFrom(
