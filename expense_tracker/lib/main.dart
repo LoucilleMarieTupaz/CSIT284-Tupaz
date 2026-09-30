@@ -78,6 +78,25 @@ class _MyAppState extends State<MyApp> {
             foregroundColor: kDarkColorScheme.onPrimaryContainer,
           ),
         ),
+        textTheme: ThemeData().textTheme.copyWith(
+          titleLarge: TextStyle(
+            fontWeight: FontWeight.bold,
+              color: kDarkColorScheme.onSecondaryContainer,
+              fontSize: 16,
+          ),
+          bodyMedium: TextStyle(
+            color: kDarkColorScheme.onSecondaryContainer,
+            fontSize: 14,
+          ),
+          bodySmall: TextStyle(
+            color: kDarkColorScheme.onSecondaryContainer,
+            fontSize: 12,
+          ),
+          labelLarge: TextStyle(
+            color: kDarkColorScheme.onSecondaryContainer,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
       ),      
       home: Expenses(
         isDarkMode: _themeMode == ThemeMode.dark,

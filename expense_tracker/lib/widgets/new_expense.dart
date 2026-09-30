@@ -44,7 +44,8 @@ class _NewExpenseState extends State<NewExpense> {
         builder: (ctx) => AlertDialog(
           title: const Text('Invalid input'),
           content: const Text(
-              'Please make sure a valid title, amount, date and category was entered.'),
+              'Please make sure a valid title, amount, date and category was entered.'
+          ),
           actions: [
             TextButton(
               onPressed: () {
@@ -85,6 +86,9 @@ class _NewExpenseState extends State<NewExpense> {
           TextField(
             controller: _titleController,
             maxLength: 50,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onSecondaryContainer,
+            ),
             decoration: const InputDecoration(
               label: Text('Title'),
             ),
@@ -95,6 +99,9 @@ class _NewExpenseState extends State<NewExpense> {
                 child: TextField(
                   controller: _amountController,
                   keyboardType: TextInputType.number,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSecondaryContainer,
+                  ),
                   decoration: const InputDecoration(
                     prefixText: '\$ ',
                     label: Text('Amount'),
@@ -126,7 +133,7 @@ class _NewExpenseState extends State<NewExpense> {
           const SizedBox(height: 16),
           Row(
             children: [
-              DropdownButton(
+              DropdownButton<Category>(
                 value: _selectedCategory,
                 items: Category.values
                     .map(
@@ -134,10 +141,14 @@ class _NewExpenseState extends State<NewExpense> {
                         value: category,
                         child: Text(
                           category.name.toUpperCase(),
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onSecondaryContainer, 
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
-                    )
-                    .toList(),
+                ).toList(),
                 onChanged: (value) {
                   if (value == null) {
                     return;
@@ -146,6 +157,8 @@ class _NewExpenseState extends State<NewExpense> {
                     _selectedCategory = value;
                   });
                 },
+                dropdownColor: Theme.of(context).colorScheme.secondaryContainer,
+                iconEnabledColor: Theme.of(context).colorScheme.onSecondaryContainer, 
               ),
               const Spacer(),
               TextButton(
