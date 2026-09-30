@@ -63,7 +63,6 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       darkTheme: ThemeData.dark().copyWith(
-        useMaterial3: true,
         colorScheme: kDarkColorScheme,
         cardTheme: const CardThemeData().copyWith(
           color: kDarkColorScheme.secondaryContainer,

@@ -103,7 +103,7 @@ class _NewExpenseState extends State<NewExpense> {
                     color: Theme.of(context).colorScheme.onSecondaryContainer,
                   ),
                   decoration: const InputDecoration(
-                    prefixText: '\$ ',
+                    prefixText: '₱ ',
                     label: Text('Amount'),
                   ),
                 ),
