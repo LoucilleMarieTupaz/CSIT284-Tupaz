@@ -1,11 +1,11 @@
 import 'package:expenses_tracker/widgets/expenses.dart';
 import 'package:flutter/material.dart';
 
-var kColorScheme = ColorScheme.fromSeed(
+final kColorScheme = ColorScheme.fromSeed(
   seedColor: const Color.fromARGB(255, 181, 98, 59),
 );
 
-var kDarkColorScheme = ColorScheme.fromSeed(
+final kDarkColorScheme = ColorScheme.fromSeed(
   brightness: Brightness.dark,
   seedColor: const Color.fromARGB(255, 5, 99, 125),
 );
@@ -26,9 +26,8 @@ class _MyAppState extends State<MyApp> {
 
   void _toggleTheme() {
     setState(() {
-      _themeMode = _themeMode == ThemeMode.light
-          ? ThemeMode.dark
-          : ThemeMode.light;
+      _themeMode =
+          _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
     });
   }
 
@@ -45,8 +44,11 @@ class _MyAppState extends State<MyApp> {
         ),
         cardTheme: const CardThemeData().copyWith(
           color: kColorScheme.secondaryContainer,
-          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        ),
+          margin: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 8,
+          ),
+        ),  
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             backgroundColor: kColorScheme.primaryContainer,
@@ -55,8 +57,8 @@ class _MyAppState extends State<MyApp> {
         textTheme: ThemeData().textTheme.copyWith(
           titleLarge: TextStyle(
             fontWeight: FontWeight.bold,
-            color: kColorScheme.onSecondaryContainer,
-            fontSize: 16,
+              color: kColorScheme.onSecondaryContainer,
+              fontSize: 16,
           ),
         ),
       ),
@@ -64,7 +66,10 @@ class _MyAppState extends State<MyApp> {
         colorScheme: kDarkColorScheme,
         cardTheme: const CardThemeData().copyWith(
           color: kDarkColorScheme.secondaryContainer,
-          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          margin: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 8,
+          ),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
@@ -75,8 +80,8 @@ class _MyAppState extends State<MyApp> {
         textTheme: ThemeData().textTheme.copyWith(
           titleLarge: TextStyle(
             fontWeight: FontWeight.bold,
-            color: kDarkColorScheme.onSecondaryContainer,
-            fontSize: 16,
+              color: kDarkColorScheme.onSecondaryContainer,
+              fontSize: 16,
           ),
           bodyMedium: TextStyle(
             color: kDarkColorScheme.onSecondaryContainer,
@@ -91,7 +96,7 @@ class _MyAppState extends State<MyApp> {
             fontWeight: FontWeight.w600,
           ),
         ),
-      ),
+      ),      
       home: Expenses(
         isDarkMode: _themeMode == ThemeMode.dark,
         onToggleTheme: _toggleTheme,
