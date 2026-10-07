@@ -39,7 +39,9 @@ class _ExpensesState extends State<Expenses> {
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
       context: context,
-      builder: (ctx) => NewExpense(onAddExpense: _addExpense),
+      builder: (ctx) => NewExpense(
+        onAddExpense: _addExpense,
+      ),
     );
   }
 
@@ -91,7 +93,11 @@ class _ExpensesState extends State<Expenses> {
         title: const Text('Flutter ExpenseTracker'),
         actions: [
           IconButton(
-            icon: Icon(widget.isDarkMode ? Icons.dark_mode : Icons.light_mode),
+            icon: Icon(
+              widget.isDarkMode 
+                ? Icons.dark_mode 
+                : Icons.light_mode
+            ),
             onPressed: widget.onToggleTheme,
           ),
           IconButton(
@@ -100,13 +106,39 @@ class _ExpensesState extends State<Expenses> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Chart(expenses: _registeredExpenses),
-          Expanded(
-            child: mainContent,
-          ),
-        ],
+      body: SafeArea(
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final isLandscape =
+                MediaQuery.of(context).orientation ==
+                    Orientation.landscape;
+
+            if (isLandscape || constraints.maxWidth >= 600) {
+              return Row(
+                children: [
+                  Expanded(
+                    child: Chart(
+                      expenses: _registeredExpenses,
+                    ),
+                  ),
+                  Expanded(
+                    child: mainContent,
+                  ),
+                ],
+              );
+            }
+            return Column(
+              children: [
+                Chart(
+                  expenses: _registeredExpenses,
+                ),
+                Expanded(
+                  child: mainContent,
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
