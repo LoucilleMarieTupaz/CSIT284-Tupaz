@@ -39,6 +39,7 @@ class _ExpensesState extends State<Expenses> {
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       builder: (ctx) => NewExpense(
         onAddExpense: _addExpense,
       ),
@@ -114,17 +115,32 @@ class _ExpensesState extends State<Expenses> {
                     Orientation.landscape;
 
             if (isLandscape || constraints.maxWidth >= 600) {
-              return Row(
-                children: [
-                  Expanded(
-                    child: Chart(
-                      expenses: _registeredExpenses,
-                    ),
+              return Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(
+                    maxWidth: 1200,
                   ),
-                  Expanded(
-                    child: mainContent,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Chart(
+                            expenses: _registeredExpenses,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 3,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: mainContent,
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               );
             }
             return Column(
@@ -133,7 +149,10 @@ class _ExpensesState extends State<Expenses> {
                   expenses: _registeredExpenses,
                 ),
                 Expanded(
-                  child: mainContent,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: mainContent,
+                  ),
                 ),
               ],
             );
