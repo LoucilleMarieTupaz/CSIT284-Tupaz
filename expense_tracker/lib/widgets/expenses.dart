@@ -33,16 +33,14 @@ class _ExpensesState extends State<Expenses> {
       amount: 15.69,
       date: DateTime.now(),
       category: Category.leisure,
-    )
+    ),
   ];
 
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      builder: (ctx) => NewExpense(
-        onAddExpense: _addExpense,
-      ),
+      builder: (_) => NewExpense(onAddExpense: _addExpense),
     );
   }
 
@@ -54,7 +52,7 @@ class _ExpensesState extends State<Expenses> {
 
   void _removeExpense(Expense expense) {
     final expenseIndex = _registeredExpenses.indexOf(expense);
-  
+
     setState(() {
       _registeredExpenses.remove(expense);
     });
@@ -88,17 +86,13 @@ class _ExpensesState extends State<Expenses> {
         onRemoveExpense: _removeExpense,
       );
     }
-    
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Flutter ExpenseTracker'),
         actions: [
           IconButton(
-            icon: Icon(
-              widget.isDarkMode 
-                ? Icons.dark_mode 
-                : Icons.light_mode
-            ),
+            icon: Icon(widget.isDarkMode ? Icons.dark_mode : Icons.light_mode),
             onPressed: widget.onToggleTheme,
           ),
           IconButton(
@@ -111,24 +105,19 @@ class _ExpensesState extends State<Expenses> {
         child: LayoutBuilder(
           builder: (context, constraints) {
             final isLandscape =
-                MediaQuery.of(context).orientation ==
-                    Orientation.landscape;
+                MediaQuery.of(context).orientation == Orientation.landscape;
 
             if (isLandscape || constraints.maxWidth >= 600) {
               return Center(
                 child: ConstrainedBox(
-                  constraints: const BoxConstraints(
-                    maxWidth: 1200,
-                  ),
+                  constraints: const BoxConstraints(maxWidth: 1200),
                   child: Row(
                     children: [
                       Expanded(
                         flex: 2,
                         child: Padding(
                           padding: const EdgeInsets.all(8),
-                          child: Chart(
-                            expenses: _registeredExpenses,
-                          ),
+                          child: Chart(expenses: _registeredExpenses),
                         ),
                       ),
                       Expanded(
@@ -145,9 +134,7 @@ class _ExpensesState extends State<Expenses> {
             }
             return Column(
               children: [
-                Chart(
-                  expenses: _registeredExpenses,
-                ),
+                Chart(expenses: _registeredExpenses),
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
